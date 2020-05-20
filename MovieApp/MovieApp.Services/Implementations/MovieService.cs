@@ -17,7 +17,7 @@ namespace MovieApp.Services.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, string director, string genre)
+        public async Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, Director director, string genre)
         {
             var movie = new Movie()
             {

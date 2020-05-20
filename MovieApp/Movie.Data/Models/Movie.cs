@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieApp.Data.Models
 {
+    [Table("Movies")]
     public class Movie
     {
         public int Id { get; set; }
@@ -18,7 +20,7 @@ namespace MovieApp.Data.Models
         public DateTime ReleaseDate { get; set; }
 
         [Required]
-        public string Director { get; set; }
+        public Director Director { get; set; }
 
         [Required]
         public string Genre { get; set; }

@@ -14,6 +14,8 @@ namespace MovieApp.Data
 
         public DbSet<Actor> Actors { get; set; }
 
+        public DbSet<Director> Directors { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

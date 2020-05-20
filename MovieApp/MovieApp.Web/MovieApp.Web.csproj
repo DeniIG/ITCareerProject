@@ -20,4 +20,8 @@
     <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Directors\" />
+  </ItemGroup>
+
 </Project>
