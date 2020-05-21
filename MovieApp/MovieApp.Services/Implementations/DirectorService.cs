@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
-using MovieApp.Data.Models;
+using MovieApp.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +42,7 @@ namespace MovieApp.Services.Implementations
             if (director is null)
             {
                 return false;
+                throw new ArgumentException("Director does not exist");
             }
 
             _dbContext.Remove(director);
@@ -58,6 +59,7 @@ namespace MovieApp.Services.Implementations
             if(director is null)
             {
                 return false;
+                throw new ArgumentException("Director does not exist");
             }
 
             director.Name = model.Name;

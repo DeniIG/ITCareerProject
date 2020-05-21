@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MovieApp.Data.Models;
+using MovieApp.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

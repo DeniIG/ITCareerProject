@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieApp.Data.Models
+namespace MovieApp.Data.Entities
 {
     [Table("Movies")]
     public class Movie

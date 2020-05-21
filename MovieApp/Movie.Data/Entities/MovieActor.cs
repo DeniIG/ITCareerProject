@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieApp.Data.Models
+namespace MovieApp.Data.Entities
 {
     public class MovieActor
     {
