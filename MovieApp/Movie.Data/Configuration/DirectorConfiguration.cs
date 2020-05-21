@@ -7,13 +7,13 @@ using System.Text;
 
 namespace MovieApp.Data.Configuration
 {
-    public class ActorConfiguration : IEntityTypeConfiguration<Actor>
+    class DirectorConfiguration : IEntityTypeConfiguration<Director>
     {
-        public void Configure(EntityTypeBuilder<Actor> builder)
+        public void Configure(EntityTypeBuilder<Director> builder)
         {
             builder.HasKey(a => a.Id);
 
-            builder.HasMany(a => a.Movies).WithOne(ma => ma.Actor).HasForeignKey(ma => ma.ActorId);
+            builder.HasMany(a => a.Movies).WithOne(md => md.Director).HasForeignKey(md => md.Id);
         }
     }
 }

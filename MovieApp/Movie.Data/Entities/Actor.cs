@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MovieApp.Data.Models
+namespace MovieApp.Data.Entities
 {
+
+    [Table("Actors")]
     public class Actor
     {
         public int Id { get; set; }

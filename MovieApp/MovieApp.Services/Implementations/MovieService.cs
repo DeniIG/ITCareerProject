@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
-using MovieApp.Data.Models;
+using MovieApp.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace MovieApp.Services.Implementations
             _dbContext = dbContext;
         }
 
-        public async Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, string director, string genre)
+        public async Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, Director director, string genre)
         {
             var movie = new Movie()
             {
@@ -41,6 +41,7 @@ namespace MovieApp.Services.Implementations
             if (movie is null)
             {
                 return false;
+                throw new ArgumentException("Movie does not exist");
             }
 
             _dbContext.Remove(movie);
@@ -57,6 +58,7 @@ namespace MovieApp.Services.Implementations
             if (movie is null)
             {
                 return false;
+                throw new ArgumentException("Movie does not exist");
             }
 
             movie.Title = model.Title;

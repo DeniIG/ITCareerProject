@@ -1,4 +1,4 @@
-﻿using MovieApp.Data.Models;
+﻿using MovieApp.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ namespace MovieApp.Services
 {
     public interface IMovieService
     {
-        Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, string director, string genre);
+        Task<Movie> CreateMovieAsync(string title, DateTime releaseDate, Director director, string genre);
 
         Task<bool> DeleteMovieAsync(int id);
 
