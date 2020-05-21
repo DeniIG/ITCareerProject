@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Data;
+using MovieApp.Data.Entities;
 using MovieApp.Data.Models;
 using MovieApp.Services;
 using MovieApp.Web.Models.Actors;
