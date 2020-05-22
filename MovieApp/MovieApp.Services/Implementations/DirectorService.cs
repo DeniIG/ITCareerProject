@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Services.Implementations
 {
-    class DirectorService : IDirectorService
+    public class DirectorService : IDirectorService
     {
         private readonly MovieDbContext _dbContext;
 

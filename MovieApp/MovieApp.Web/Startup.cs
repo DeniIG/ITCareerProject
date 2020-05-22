@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using MovieApp.Data;
 using MovieApp.Services;
 using MovieApp.Services.Implementations;
+using MovieApp.Data.Entities;
+using System;
 
 namespace MovieApp.Web
 {
@@ -32,18 +28,29 @@ namespace MovieApp.Web
             services.AddDbContext<MovieDbContext>(options =>
                  options.UseMySql(
                      Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options =>
-            {
-                options.SignIn.RequireConfirmedAccount = true;
 
-                options.Password.RequireUppercase = false;
+
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0, 5, 0);
+
+                options.SignIn.RequireConfirmedEmail = true;
 
             })
-            .AddEntityFrameworkStores<MovieDbContext>();
+            .AddEntityFrameworkStores<MovieDbContext>()
+            .AddDefaultTokenProviders();
 
-            services.AddScoped<IMovieService, MovieService>();
-            services.AddScoped<IActorService, ActorService>();
+            services.AddTransient<IMovieService, MovieService>();
+            services.AddTransient<IActorService, ActorService>();
+            services.AddTransient<IDirectorService, DirectorService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
