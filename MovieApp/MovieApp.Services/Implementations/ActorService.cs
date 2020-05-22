@@ -62,7 +62,9 @@ namespace MovieApp.Services.Implementations
 
             actor.Name = model.Name;
             actor.Born = model.Born;
-           
+
+            _dbContext.Update(actor);
+
             await _dbContext.SaveChangesAsync();
 
             return true;
