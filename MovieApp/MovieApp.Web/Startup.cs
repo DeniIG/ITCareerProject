@@ -25,6 +25,11 @@ namespace MovieApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddTransient<IMovieService, MovieService>();
+            services.AddTransient<IActorService, ActorService>();
+            services.AddTransient<IDirectorService, DirectorService>();            
+
             services.AddDbContext<MovieDbContext>(options =>
                  options.UseMySql(
                      Configuration.GetConnectionString("DefaultConnection")));
@@ -47,12 +52,7 @@ namespace MovieApp.Web
             })
             .AddEntityFrameworkStores<MovieDbContext>()
             .AddDefaultTokenProviders();
-
-            services.AddTransient<IMovieService, MovieService>();
-            services.AddTransient<IActorService, ActorService>();
-            services.AddTransient<IDirectorService, DirectorService>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,8 +81,7 @@ namespace MovieApp.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                    pattern: "{controller=Home}/{action=Index}/{id?}");               
             });
         }
     }

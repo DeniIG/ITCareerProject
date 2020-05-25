@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Data;
 using MovieApp.Data.Entities;
@@ -16,20 +17,27 @@ namespace MovieApp.Web.Controllers
     {
         private readonly IActorService _actorService;
         private readonly MovieDbContext _context;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
 
-        public ActorsController(IActorService actorService, MovieDbContext context)
+        public ActorsController(IActorService actorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _actorService = actorService;
             _context = context;
+            _signInManager = signInManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var actors = await _actorService.GetActorsAsync();
+            if (this.User != null && this._signInManager.IsSignedIn(this.User))
+            {
+                var actors = await _actorService.GetActorsAsync();
 
-            return View(actors);
+                return View(actors);
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
