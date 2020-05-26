@@ -4,24 +4,21 @@ using Microsoft.AspNetCore.Mvc;
 using MovieApp.Data;
 using MovieApp.Data.Entities;
 using MovieApp.Services;
-using MovieApp.Web.Models.Directors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MovieApp.Web.Models.Movies;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace MovieApp.Web.Controllers
 {
-    public class DirectorsController : Controller
+    public class MovieController : Controller
     {
-
-        private readonly IDirectorService _directorService;
+        private readonly IMovieService _movieService;
         private readonly MovieDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public DirectorsController(IDirectorService directorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
+        public MovieController(IMovieService movieService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
         {
-            _directorService = directorService;
+            _movieService = movieService;
             _context = context;
             _signInManager = signInManager;
         }
@@ -31,12 +28,19 @@ namespace MovieApp.Web.Controllers
         {
             if (this.User != null && this._signInManager.IsSignedIn(this.User))
             {
-                var directors = await _directorService.GetDirectorsAsync();
+                var movies = await _movieService.GetMoviesAsync();
 
-                return View(directors);
+                return View(movies);
             }
 
             return RedirectToAction("Login", "Account");
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            Movie movie = await this._movieService.GetMovieAsync(id);
+
+            return View(movie);
         }
 
         [HttpGet]
@@ -48,14 +52,14 @@ namespace MovieApp.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateDirectorModel model)
+        public async Task<IActionResult> Create(CreateMovieModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var director = await _directorService.CreateDirectorAsync(model.Name, model.Age, model.Country);
+            var actor = await _movieService.CreateMovieAsync(model.Title, model.ReleaseDate, model.Director, model.Genre);
 
             return RedirectToAction(nameof(Index));
         }
@@ -63,35 +67,35 @@ namespace MovieApp.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var director = await this._directorService.GetDirectorAsync(id);
-            return View(director);
+            var movie = await this._movieService.GetMovieAsync(id);
+            return View(movie);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Edit(Director director)
+        public async Task<IActionResult> Edit(Movie movie)
         {
             if (ModelState.IsValid)
             {
-                await this._directorService.EditDirectorAsync(director);
+                await this._movieService.EditMovieAsync(movie);
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(director);
+            return View(movie);
         }
 
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            var director = await this._directorService.GetDirectorAsync(id);
-            return View(director);
+            var movie = await _movieService.DeleteMovieAsync(id);
+            return View(movie);
         }
 
         [HttpPost, ActionName("Delete")]
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await this._directorService.DeleteDirectorAsync(id);
+            await this._movieService.DeleteMovieAsync(id);
 
             return RedirectToAction(nameof(Index));
         }

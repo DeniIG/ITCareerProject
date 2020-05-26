@@ -19,7 +19,6 @@ namespace MovieApp.Web.Controllers
         private readonly MovieDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-
         public ActorsController(IActorService actorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _actorService = actorService;
@@ -38,6 +37,13 @@ namespace MovieApp.Web.Controllers
             }
 
             return RedirectToAction("Login", "Account");
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            Actor actor = await this._actorService.GetActorAsync(id);
+
+            return View(actor);
         }
 
         [HttpGet]

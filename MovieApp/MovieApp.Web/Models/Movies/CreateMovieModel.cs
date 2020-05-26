@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace MovieApp.Web.Models.Movies
         public DateTime ReleaseDate { get; set; }
 
         [Required]
-        public string Director { get; set; }
+        public Director Director { get; set; }
 
         [Required]
         public string Genre { get; set; }
