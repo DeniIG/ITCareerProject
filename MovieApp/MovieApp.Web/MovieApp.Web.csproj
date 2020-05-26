@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Directors\**" />
+    <Content Remove="Views\Directors\**" />
+    <EmbeddedResource Remove="Views\Directors\**" />
+    <None Remove="Views\Directors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
@@ -18,10 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Movie.Data\MovieApp.Data.csproj" />
     <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Directors\" />
   </ItemGroup>
 
 </Project>
