@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Web.Controllers
 {
-    public class ActorsController : Controller
+    public class ActorController : Controller
     {
         private readonly IActorService _actorService;
         private readonly MovieDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public ActorsController(IActorService actorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
+        public ActorController(IActorService actorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _actorService = actorService;
             _context = context;

@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Web.Controllers
 {
-    public class DirectorsController : Controller
+    public class DirectorController : Controller
     {
 
         private readonly IDirectorService _directorService;
         private readonly MovieDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public DirectorsController(IDirectorService directorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
+        public DirectorController(IDirectorService directorService, MovieDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _directorService = directorService;
             _context = context;
