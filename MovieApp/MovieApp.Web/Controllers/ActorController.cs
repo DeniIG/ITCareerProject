@@ -29,7 +29,7 @@ namespace MovieApp.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            if (this.User != null && this._signInManager.IsSignedIn(this.User))
+            if (this.User != null /* && this._signInManager.IsSignedIn(this.User)*/)
             {
                 var actors = await _actorService.GetActorsAsync();
 
