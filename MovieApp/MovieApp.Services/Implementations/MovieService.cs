@@ -51,7 +51,7 @@ namespace MovieApp.Services.Implementations
             return true;
         }
 
-        public async Task<bool> EditMovieAsync(Movie model) // TODO: EditMovieModel? / EditMovieAsync(int id, EditMovieModel model)
+        public async Task<bool> EditMovieAsync(Movie model)
         {
             var movie = await _dbContext.Movies.FindAsync(model.Id);
 
