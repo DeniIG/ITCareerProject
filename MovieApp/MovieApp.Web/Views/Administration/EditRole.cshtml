@@ -7,7 +7,7 @@
 <h1>Edit Role</h1>
 
 <form method="post" class="mt-3">
-    <div c;ass="form-group row">
+    <div class="form-group row">
         <label asp-for="Id" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <input asp-for="Id" disabled class="form-control">
@@ -47,8 +47,10 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-primary" style="width:auto">Add Users</a>
-            <a href="#" class="btn btn-primary" style="width:auto">Remove Users</a>
+            <a asp-controller="Administration" asp-action="EditUsersInRole"
+               asp-route-roleId="@Model.Id" class="btn btn-primary">
+                Add or remove users from this role
+            </a>
         </div>
     </div>
 
