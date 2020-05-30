@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieApp.Data.Entities;
 using MovieApp.Data.Models;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace MovieApp.Web.Controllers
@@ -23,6 +24,21 @@ namespace MovieApp.Web.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsEmailInUse(string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Email {email} is already in use!");
+            }
         }
 
         [HttpPost]
@@ -60,7 +76,7 @@ namespace MovieApp.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -72,14 +88,22 @@ namespace MovieApp.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), "Home");
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+
+                        return RedirectToAction(nameof(Index), "Home");
+                    }
                 }
 
                 ModelState.AddModelError("", "Login attempt failed");
             }
 
             return View(model);
-        }
+        }        
 
         public async Task<IActionResult> Logout()
         {
