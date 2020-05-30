@@ -6,11 +6,8 @@
 
 <h1>Create</h1>
 
-<<<<<<< HEAD
-<h4>Create Movie</h4>
-=======
 <h4>Create a movie</h4>
->>>>>>> 3f6bbe9f04f183593b93db13c7c8fb26e12b061c
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,6 +22,11 @@
                 <label asp-for="ReleaseDate" class="control-label"></label>
                 <input asp-for="ReleaseDate" class="form-control" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Director" class="control-label"></label>
+                <input asp-for="Director" class="form-control" />
+                <span asp-validation-for="Director" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Genre" class="control-label"></label>

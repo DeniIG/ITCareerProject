@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Services", "MovieA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Web", "MovieApp.Web\MovieApp.Web.csproj", "{F35F6675-8FCD-4F94-9DD5-0349278578EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Tests", "MovieApp.Tests\MovieApp.Tests.csproj", "{E2BC9405-1F5B-4500-B3C0-7ADA06D70F80}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{F35F6675-8FCD-4F94-9DD5-0349278578EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F35F6675-8FCD-4F94-9DD5-0349278578EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F35F6675-8FCD-4F94-9DD5-0349278578EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2BC9405-1F5B-4500-B3C0-7ADA06D70F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2BC9405-1F5B-4500-B3C0-7ADA06D70F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2BC9405-1F5B-4500-B3C0-7ADA06D70F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2BC9405-1F5B-4500-B3C0-7ADA06D70F80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

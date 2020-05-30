@@ -191,20 +191,23 @@ namespace MovieApp.Data.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(maxLength: 60, nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    Genre = table.Column<string>(nullable: false)
+                    Director = table.Column<string>(maxLength: 60, nullable: false),
+                    Genre = table.Column<string>(nullable: false),
+                    DirectorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movies_Directors_Id",
-                        column: x => x.Id,
+                        name: "FK_Movies_Directors_DirectorId",
+                        column: x => x.DirectorId,
                         principalTable: "Directors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,6 +275,11 @@ namespace MovieApp.Data.Migrations
                 name: "IX_MovieActor_ActorId",
                 table: "MovieActor",
                 column: "ActorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Movies_DirectorId",
+                table: "Movies",
+                column: "DirectorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

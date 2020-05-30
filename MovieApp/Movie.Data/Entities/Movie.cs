@@ -20,7 +20,8 @@ namespace MovieApp.Data.Entities
         public DateTime ReleaseDate { get; set; }
 
         [Required]
-        public Director Director { get; set; }
+        [StringLength(60, MinimumLength = 3)]
+        public string Director { get; set; }
 
         [Required]
         public string Genre { get; set; }
