@@ -47,7 +47,7 @@ namespace MovieApp.Web
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0, 5, 0);
 
-                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
 
             })
             .AddEntityFrameworkStores<MovieDbContext>()

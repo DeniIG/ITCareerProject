@@ -13,6 +13,7 @@ namespace MovieApp.Data.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Full Name")]
         public string FirstName { get; set; }
 
         [Required]

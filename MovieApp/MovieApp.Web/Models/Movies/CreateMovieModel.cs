@@ -18,7 +18,7 @@ namespace MovieApp.Web.Models.Movies
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
+        //[Required]
         public Director Director { get; set; }
 
         [Required]
