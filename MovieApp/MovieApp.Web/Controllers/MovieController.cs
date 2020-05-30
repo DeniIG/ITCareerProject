@@ -61,7 +61,7 @@ namespace MovieApp.Web.Controllers
                 return View(model);
             }
 
-            var actor = await _movieService.CreateMovieAsync(model.Title, model.ReleaseDate, model.Director, model.Genre);
+            var movie = await _movieService.CreateMovieAsync(model.Title, model.ReleaseDate, model.Director, model.Genre);
 
             return RedirectToAction(nameof(Index));
         }
@@ -89,7 +89,7 @@ namespace MovieApp.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            var movie = await _movieService.DeleteMovieAsync(id);
+            var movie = await _movieService.GetMovieAsync(id);
             return View(movie);
         }
 

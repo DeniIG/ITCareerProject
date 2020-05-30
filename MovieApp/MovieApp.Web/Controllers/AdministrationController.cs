@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MovieApp.Data.Entities;
 using MovieApp.Web.Models;
@@ -81,13 +82,12 @@ namespace MovieApp.Web.Controllers
                 RoleName = role.Name
             };
 
-            foreach(var user in userManager.Users)
+            foreach(var user in await userManager.Users.ToListAsync())
             {
-               if(await userManager.IsInRoleAsync(user, role.Name))
+                if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     model.Users.Add(user.UserName);
-                    
-                }
+                } 
             }
 
             return View(model);
@@ -119,7 +119,6 @@ namespace MovieApp.Web.Controllers
                 }
 
                  return View(model);
-
             }
         }
     }
