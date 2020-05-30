@@ -17,8 +17,6 @@ namespace MovieApp.Web.Models.Directors
 
             [Required]
             [StringLength(50, MinimumLength = 3)]
-            public string Country { get; set; }
-
-        
+            public string Country { get; set; }  
     }
 }

@@ -39,19 +39,19 @@
                         </li>
                         @if (this.signinManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">Logout @User.Identity.Name</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" style="margin-left: 500px" asp-area="" asp-controller="Account" asp-action="Logout">Log out </a>
+                        </li>
 
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" style="margin-left: 500px" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" style="margin-left: 500px" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
                         }
                     </ul>
                 </div>
@@ -63,7 +63,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - MovieApp.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
