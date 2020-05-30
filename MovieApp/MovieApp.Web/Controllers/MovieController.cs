@@ -87,7 +87,7 @@ namespace MovieApp.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            var movie = await _movieService.DeleteMovieAsync(id);
+            var movie = await _movieService.GetMovieAsync(id);
             return View(movie);
         }
 
