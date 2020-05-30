@@ -10,6 +10,9 @@ using MovieApp.Services;
 using MovieApp.Services.Implementations;
 using MovieApp.Data.Entities;
 using System;
+using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace MovieApp.Web
 {
@@ -28,14 +31,14 @@ namespace MovieApp.Web
             services.AddControllersWithViews();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IActorService, ActorService>();
-            services.AddTransient<IDirectorService, DirectorService>();            
+            services.AddTransient<IDirectorService, DirectorService>();
 
             services.AddDbContext<MovieDbContext>(options =>
                  options.UseMySql(
                      Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -52,6 +55,15 @@ namespace MovieApp.Web
             })
             .AddEntityFrameworkStores<MovieDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters();
        
         }
 

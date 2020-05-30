@@ -39,15 +39,15 @@
                         </li>
                         @if (this.signinManager.IsSignedIn(User))
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-light" style="margin-left: 500px" asp-area="" asp-controller="Account" asp-action="Logout">Log out </a>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">Log out </a>
                         </li>
 
                         }
                         else
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-light" style="margin-left: 500px" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
