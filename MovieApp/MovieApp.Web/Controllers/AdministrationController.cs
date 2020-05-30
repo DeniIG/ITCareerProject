@@ -84,11 +84,10 @@ namespace MovieApp.Web.Controllers
 
             foreach(var user in await userManager.Users.ToListAsync())
             {
-               if(await userManager.IsInRoleAsync(user, role.Name))
+                if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     model.Users.Add(user.UserName);
-                    
-                }
+                } 
             }
 
             return View(model);
@@ -120,6 +119,7 @@ namespace MovieApp.Web.Controllers
                 }
 
                  return View(model);
+<<<<<<< HEAD
             }
         }
 
@@ -156,6 +156,8 @@ namespace MovieApp.Web.Controllers
                 }
 
                 model.Add(userRoleViewModel);
+=======
+>>>>>>> 3e700c7011fb0446110b072df13f643352bbdd06
             }
 
             return View(model);
