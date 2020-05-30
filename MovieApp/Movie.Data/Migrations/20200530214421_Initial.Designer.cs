@@ -9,11 +9,7 @@ using MovieApp.Data;
 namespace MovieApp.Data.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-<<<<<<< HEAD:MovieApp/Movie.Data/Migrations/20200530175456_Initial.Designer.cs
-    [Migration("20200530175456_Initial")]
-=======
-    [Migration("20200530192534_Initial")]
->>>>>>> 8f53f87bd2e13d96b35f4e3cb3d74e31a4394f40:MovieApp/Movie.Data/Migrations/20200530192534_Initial.Designer.cs
+    [Migration("20200530214421_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
