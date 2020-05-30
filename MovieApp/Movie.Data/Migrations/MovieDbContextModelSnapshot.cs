@@ -264,6 +264,15 @@ namespace MovieApp.Data.Migrations
             modelBuilder.Entity("MovieApp.Data.Entities.Movie", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("varchar(60) CHARACTER SET utf8mb4")
+                        .HasMaxLength(60);
+
+                    b.Property<int?>("DirectorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Genre")
@@ -279,6 +288,8 @@ namespace MovieApp.Data.Migrations
                         .HasMaxLength(60);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DirectorId");
 
                     b.ToTable("Movies");
                 });
@@ -351,11 +362,9 @@ namespace MovieApp.Data.Migrations
 
             modelBuilder.Entity("MovieApp.Data.Entities.Movie", b =>
                 {
-                    b.HasOne("MovieApp.Data.Entities.Director", "Director")
+                    b.HasOne("MovieApp.Data.Entities.Director", null)
                         .WithMany("Movies")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DirectorId");
                 });
 
             modelBuilder.Entity("MovieApp.Data.Entities.MovieActor", b =>

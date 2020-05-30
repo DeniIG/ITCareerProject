@@ -28,4 +28,6 @@
     <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>
