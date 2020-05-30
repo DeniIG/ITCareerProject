@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.Data.Entities;
 using MovieApp.Data.Models;
@@ -21,12 +22,14 @@ namespace MovieApp.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
         public async Task<IActionResult> IsEmailInUse(string email)
         {
             var user = await userManager.FindByEmailAsync(email);
@@ -42,6 +45,7 @@ namespace MovieApp.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -57,6 +61,7 @@ namespace MovieApp.Web.Controllers
 
                 if (result.Succeeded)
                 {
+                    await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction(nameof(Index), "Home");
                 }
 
@@ -70,12 +75,14 @@ namespace MovieApp.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)

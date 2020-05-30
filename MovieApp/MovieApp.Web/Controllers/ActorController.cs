@@ -27,6 +27,7 @@ namespace MovieApp.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             if (this.User != null /* && this._signInManager.IsSignedIn(this.User)*/)
@@ -39,6 +40,7 @@ namespace MovieApp.Web.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             Actor actor = await this._actorService.GetActorAsync(id);

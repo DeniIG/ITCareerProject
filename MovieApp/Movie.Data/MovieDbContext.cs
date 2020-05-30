@@ -6,7 +6,7 @@ using MovieApp.Data.Entities;
 namespace MovieApp.Data
 {
 
-    public class MovieDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
+    public class MovieDbContext : IdentityDbContext<ApplicationUser>
     {
         public MovieDbContext(DbContextOptions options) : base(options)
         {
